@@ -1,0 +1,211 @@
+body{
+    background: url("https://imgur.com/OzkztMt.png");
+    color: #250cb4;
+    font-family: Droid Sans;
+    font-size: 16px;
+    font-weight: bold;
+    
+    line-height: 1.6em;
+}
+
+
+.container{
+    width: 1904px;
+
+position: relative;
+top: -20px;
+left: -8px;
+    margin: auto;
+}
+
+#A  {
+color: rgb(12, 29, 1);
+}
+
+.haloiii{
+
+
+
+
+
+
+
+
+}
+
+.box-1{
+    background: url("https://i.imgur.com/lFIwcA8.png");
+top: 12px;
+    
+
+ 
+
+
+       /* same as the one above */
+     
+
+   
+       /* space it away */
+height: 80px;
+width: 2000px;
+box-shadow: #0c0c0c 2px 2px 9px 2px;
+       padding-top: px;
+       padding-bottom: px;
+       padding-left: 20px;
+       padding-right: 20px;
+       /* same as above */
+       padding:2px;
+       /* adds space to the top */
+       margin-top: 2px;
+       margin:20px 0;  
+}
+
+   /*word formating*/
+.box-1 h1{
+     font-family: Droid Sans;
+    font-weight: 800;
+    font-style: italic;
+    text-decoration: underline;
+    text-transform: uppercase;
+}
+
+.box-2{
+    border: 5px rgb(45, 167, 72) solid;
+   
+    padding:20px;
+
+    margin-top: 20px;
+    margin:20px 0;  
+    padding: 50px;
+    border: radius 5px;
+    Margin-right: 30px;
+    Margin-left:  90px;
+    
+}
+
+.box-2 h1{
+    text-align:center;
+    font-family: Droid Sans;
+    font-size: 50px;
+    margin-top: 15px;
+    color: #000;
+}
+ .box-2 h2{
+     text-align: center;
+    font-size: medium;
+    color: #000;
+ }
+
+ .box-2 h3{
+     text-align: center;
+     outline: 5px rgb(0, 0, 0) solid ;
+ }
+
+.box-2 p{
+ font-family: Droid Sans;
+ text-align: center;
+ word-spacing: 0.1em;
+ outline: 5px rgb(0, 0, 0) solid;
+}
+/*video slot */
+
+
+
+/*Cateogory slot*/
+/* Class */
+.Category{
+   
+    padding: 10px;
+    border: radius 5px;
+    Margin-right: 30px;
+    Margin-left:  90px;
+}
+/* Class */
+
+/* Title */
+.Category h1{
+     text-align:center;
+     font-family: Droid Sans;
+     font-size: 50px;
+     margin-top: -15px;
+position: relative;
+left: -688px;
+    color: #000;
+}
+
+.Category h2{
+    font-size: medium;
+     color: #000;
+    text-align: center;
+}
+
+.halo3{
+background-image: url("https://static2.srcdn.com/wordpress/wp-content/uploads/2020/07/Halo-Master-Chief.jpg")
+}
+
+nav{
+height: 1px !important;
+}
+
+/* Categories */
+.Category ul{
+     padding: 0px;
+display: flex;
+ position: relative;
+left: 100px;
+top: 144px;
+  align-items: center;
+     padding-left: 20px;
+     list-style: none;
+    font-family: Droid Sans;
+}
+
+/* color changing */
+A{
+  text-decoration: none;
+  color: #000;
+}
+
+A{
+    font-size: 20px;
+}
+
+/* On and off color */
+A:hover{
+    color: rgb(45, 167, 72);
+}
+/* active-Does nothing but is useless tbh */
+A:active{
+    color: blue;
+}
+
+/* visited parts */
+a:visited{
+    none
+}
+
+/* adds lines between things */
+.Category li{
+   
+
+    list-style-image: url("Image/check.png.png")
+}
+/*Category slot*/ 
+
+
+
+}
+/* inputs */
+.Digabe-12{
+   padding:20px; 
+   padding-bottom:15px;    
+}
+
+
+.Form-groups{
+   padding-bottom:15px;
+}
+
+.Digabe-12 {
+     display:block;  
+}
