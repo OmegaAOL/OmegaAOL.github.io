@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cerulean - Experience Bluesky</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: #ffffff;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  header {
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+0,f1f1f1+50,e1e1e1+51,f6f6f6+100;White+Gloss+%231 */
+background: linear-gradient(to bottom,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+
+    border-bottom: 1px solid #e2e2e2;
+    padding: 4px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: inset 0 1px #ffffff, 0 1px 3px rgba(0,0,0,0.3);
+  }
+  header{
+    height: 44px !important;
+  }
+  #imsg {
+    height: auto !important;
+	width: 200px !important;
+  }
+  nav a {
+    margin: 0 6px;
+    font-size: 12px;
+    color: #003399;
+    text-decoration: none;
+  }
+  nav a:hover {
+    text-decoration: underline;
+  }
+  .hero {
+    text-align: center;
+    padding: 24px 10px;
+    background: linear-gradient(to bottom, #ffffff, #d6e9ff);
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid #c6c6c6;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+  }
+  .hero h1 {
+    font-size: 33px;
+    color: #343434;
+    margin-bottom: 3px;
+    text-shadow: 0 1px 0 #ffffff;
+  }
+  .hero p {
+    font-size: 14px;
+    color: #003399;
+	margin-top: 3px;
+  }
+  .buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+    gap: 8px;
+  }
+  .button {
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#b7deed+0,71ceef+50,21b4e2+51,b7deed+100;Shape+1+Style */
+background: linear-gradient(to bottom,  rgba(183,222,237,1) 0%,rgba(113,206,239,1) 50%,rgba(33,180,226,1) 51%,rgba(183,222,237,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ *//* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#b8e5fc+0,a9d7f3+10,90c0e4+25,90c2ea+37,90c5f0+50,6bb0e5+51,a3dff5+83,bdf8fd+100 */
+background: linear-gradient(to bottom,  rgba(184,229,252,1) 0%,rgba(169,215,243,1) 10%,rgba(144,192,228,1) 25%,rgba(144,194,234,1) 37%,rgba(144,197,240,1) 50%,rgba(107,176,229,1) 51%,rgba(163,223,245,1) 83%,rgba(189,248,253,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+
+    width: 100px;
+	height: auto;
+    border: 1px solid #9ebce0;
+    padding: 7px 16px;
+    border-radius: 4px;
+    font-size: 15px;
+    color: #242424;
+	font-weight: 500;
+    text-decoration: none !important;
+    display: inline-block;
+    box-shadow: inset 0 1px #ffffff, 0 1px 2px rgba(0,0,0,0.2);
+	transition: background 1s ease;
+  }
+  
+  .buttondl {
+background: linear-gradient(to bottom,  rgba(183,222,237,1) 0%,rgba(113,206,239,1) 50%,rgba(33,180,226,1) 51%,rgba(183,222,237,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ *//* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#b8e5fc+0,a9d7f3+10,90c0e4+25,90c2ea+37,90c5f0+50,6bb0e5+51,a3dff5+83,bdf8fd+100 */
+background: linear-gradient(to bottom,  rgba(184,229,252,1) 0%,rgba(169,215,243,1) 10%,rgba(144,192,228,1) 25%,rgba(144,194,234,1) 37%,rgba(144,197,240,1) 50%,rgba(107,176,229,1) 51%,rgba(163,223,245,1) 83%,rgba(189,248,253,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+    width: 250px;
+	
+
+	height: auto;
+    border: 1px solid #9ebce0;
+    padding: 16px 16px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 8px;
+    border-radius: 4px;
+    font-size: 20px;
+    color: #242424;
+	//font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: inset 0 1px #ffffff, 0 1px 2px rgba(0,0,0,0.2);
+	transition: background 0.3s ease, color 0.3s ease;
+	;
+  }
+  
+ 
+  .button:hover, .buttondl:hover,  a.button:hover {
+    background: linear-gradient(to bottom, #f0f9ff, #c2dcfb);/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#b7f3fd+0,a4e7f8+10,85d5ef+25,87d6f3+37,8ad9f6+50,60ccf0+51,9ff2f9+83,bcfef7+100 */
+background: linear-gradient(to bottom,  rgba(183,243,253,1) 0%,rgba(164,231,248,1) 10%,rgba(133,213,239,1) 25%,rgba(135,214,243,1) 37%,rgba(138,217,246,1) 50%,rgba(96,204,240,1) 51%,rgba(159,242,249,1) 83%,rgba(188,254,247,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+ text-decoration: none !important;
+  }
+  .main-section {
+    flex: 1;
+    display: flex;
+    min-height: 0;
+  }
+  .sidebar {
+    width: 160px;
+    background: linear-gradient(to bottom, #e7f1ff, #c8dcf2);
+    border-right: 1px solid #9ebce0;
+    padding: 12px 8px;
+    font-size: 12px;
+    color: #003399;
+    box-shadow: inset -1px 0 #ffffff;
+  }
+  .sidebar h3 {
+    font-size: 12px;
+    margin-top: 0;
+    margin-bottom: 6px;
+    text-shadow: 0 1px 0 #ffffff;
+  }
+  .sidebar a {
+    display: block;
+    margin: 2px 0;
+    color: #003399;
+    text-decoration: none;
+  }
+  .sidebar a:hover {
+    text-decoration: underline;
+  }
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 24px;
+    background: linear-gradient(to bottom, #ffffff, #e6f0fc);
+    gap: 20px;
+    text-align: center;
+  }
+  .content h2 {
+    font-size: 22px;
+    color: #003399;
+    text-shadow: 0 1px #ffffff;
+    margin-bottom: 0px;
+	margin-top: 1px;
+  }
+  .content p {
+    font-size: 14px;
+    color: #003399;
+    max-width: 600px;
+    margin-bottom: 20px;
+	margin-top: -5px;
+    text-shadow: 0 1px #ffffff;
+  }
+  .download-button, .viewmore-button {
+    background: linear-gradient(to bottom, #c6e6fb 0%, #afd9f5 10%, #99ccee 25%, #97ceef 37%, #93d0f3 50%, #78bdea 51%, #b2e7fa 83%, #d0f7fd 100%);
+    border: 1px solid #9ebce0;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #003399;
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: inset 0 1px #ffffff, 0 2px 4px rgba(0,0,0,0.2);
+  }
+  .download-button:hover, .viewmore-button:hover {
+    background: linear-gradient(to bottom, #f0f9ff, #c2dcfb);
+  }
+  footer {
+    background: linear-gradient(to bottom, #d6e9ff, #b8d5f0);
+    border-top: 1px solid #9ebce0;
+    padding: 6px 16px;
+    font-size: 10px;
+    text-align: center;
+    color: #003399;
+    box-shadow: inset 0 1px #ffffff, 0 -1px 3px rgba(0,0,0,0.2);
+  }
+  footer a {
+    margin: 0 3px;
+    color: #003399;
+    text-decoration: none;
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <img src="cerulean_logo.png" id="imsg" alt="Cerulean Logo" height="6">
+    <nav>
+      <a href="index.html">
+	   <button class="button">Home</button>
+	  </a>
+      <a href="about.html">
+	   <button class="button">About</button>
+	  </a>
+      <a href="https://github.com/OmegaAOL/cerulean">
+	   <button class="button">Github</button>
+	  </a>
+    </nav>
+  </header>
+  <div class="hero">
+    <h1>Native performance. Aero elegance. Free and open-source forever.</h1>
+    <p>Only the second-ever Bluesky client for Windows and the only actively developed, Cerulean is a maverick in an unknown world.</p>
+    <div class="buttons">
+      <a class="buttondl" href="https://github.com/OmegaAOL/cerulean/releases/latest">Download Cerulean</a>
+    </div>
+  </div>
+  <div class="main-section">
+    <div class="sidebar">
+      <h3>Cerulean Updates: New Website</h3>
+	  <p>Welcome to our site! I've made a new website just for Cerulean. It is a bit heavyhanded with the gloss 
+	  but I'm hoping it creates an altogether nice look.</p>
+	  <h3>Cerulean Updates: Discover feed</h3>
+	  <p>You can now get your feed! It is out of date, though, and I've absolutely no idea why.</p>
+	  <h3>Cerulean Updates: Windows 95</h3>
+	  <p>If anybody here has a working, internet-connecting Windows 95 machine, could you please test Cerulean with MattKC's
+	  .NET 2 backport? It would be amazing if Cerulean did work on 95 out of the box. I am trying to set up a VM but as
+	  with all things Windows Legacy it is a huge pain.</p>
+    </div>
+    <div class="content">
+      <h2>Screenshots</h2>
+      <p>In time, this page will host screenshots of Cerulean  (once it's finished).</p>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <p>&copy; 2025 OmegaAOL. All rights reserved.</p>
+  </footer>
+</body>
+</html>
