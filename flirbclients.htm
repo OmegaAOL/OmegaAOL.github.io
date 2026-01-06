@@ -2,39 +2,215 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Twitter Clients patched for Flirb</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flirb Clients | 2911 Edition</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
     <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #05070a 0%, #101423 50%, #1a0b2e 100%);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --accent-cyan: #00f2ff;
+            --accent-purple: #bc13fe;
+            --text-main: #e0e6ed;
+            --text-muted: #94a3b8;
+        }
+
         body {
-            background-color: #1a1a1a;
-            color: #ffffff;
-            font-family: "Times New Roman", Times, serif;
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        table {
-            border-collapse: collapse;
-            margin-top: 16px;
+
+        /* --- Typography & Title --- */
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            
+            /* Gradient Text Effect */
+            background: linear-gradient(90deg, var(--accent-cyan), #ffffff, var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 15px rgba(0, 242, 255, 0.3));
         }
-        td {
-            padding: 6px 12px;
-            vertical-align: top;
+
+        /* --- Glass Container --- */
+        .glass-panel {
+            width: 100%;
+            max-width: 1400px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
         }
+
+        /* --- Table Styling --- */
+        table.dataTable {
+            width: 100%;
+            border-collapse: separate; 
+            border-spacing: 0 8px; /* Spacing between rows */
+            border-bottom: none !important;
+        }
+
+        table.dataTable thead th {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-cyan);
+            background: transparent;
+            border-bottom: 2px solid rgba(0, 242, 255, 0.2);
+            padding: 20px 15px;
+        }
+
+        table.dataTable tbody tr {
+            background: rgba(255, 255, 255, 0.02);
+            transition: all 0.3s ease;
+        }
+
+        table.dataTable tbody tr:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: scale(1.005);
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.1);
+        }
+
+        table.dataTable td {
+            padding: 18px 15px;
+            border: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            font-weight: 300;
+        }
+
+        /* Rounded corners for rows */
+        table.dataTable tbody tr td:first-child { border-radius: 12px 0 0 12px; }
+        table.dataTable tbody tr td:last-child { border-radius: 0 12px 12px 0; }
+
+        /* Links styling */
         a {
-            color: #ffffff;
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            transition: color 0.3s ease;
         }
+
+        a:hover {
+            color: var(--accent-purple);
+            text-shadow: 0 0 8px var(--accent-purple);
+        }
+
+        /* --- DataTables Component Overrides --- */
+        
+        /* Search Box */
+        .dataTables_wrapper .dataTables_filter {
+            margin-bottom: 20px;
+            color: var(--text-muted);
+        }
+        
+        .dataTables_wrapper .dataTables_filter input {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 10px 20px;
+            color: #fff;
+            outline: none;
+            transition: border 0.3s ease, box-shadow 0.3s ease;
+            margin-left: 10px;
+        }
+
+        .dataTables_wrapper .dataTables_filter input:focus {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+        }
+
+        /* Length Menu (Show X entries) */
+        .dataTables_wrapper .dataTables_length {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .dataTables_wrapper .dataTables_length select {
+            background: #101423;
+            color: #fff;
+            border: 1px solid var(--glass-border);
+            padding: 5px 10px;
+            border-radius: 8px;
+        }
+
+        /* Info Text */
+        .dataTables_wrapper .dataTables_info {
+            color: var(--text-muted);
+            padding-top: 20px;
+        }
+
+        /* Pagination Buttons */
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            background: transparent !important;
+            border: 1px solid var(--glass-border) !important;
+            color: var(--text-main) !important;
+            border-radius: 8px !important;
+            transition: all 0.3s ease;
+            margin: 0 4px;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background: rgba(255,255,255,0.1) !important;
+            color: #fff !important;
+            border-color: var(--accent-cyan) !important;
+            box-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+            background: linear-gradient(135deg, var(--accent-purple), #6b00b3) !important;
+            border: none !important;
+            color: #fff !important;
+            box-shadow: 0 0 15px rgba(188, 19, 254, 0.4);
+        }
+        
+        .dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+            opacity: 0.3;
+        }
+
     </style>
 </head>
 <body>
 
-<h1>Twitter Clients patched for Flirb</h1>
+<h1>Twitter Clients Patched for Flirb</h1>
 
-<table>
-    <tr>
-        <td><b>Name</b></td>
-        <td><b>Platform</b></td>
-        <td><b>Download</b></td>
-		<td><b>Notes</b></td>
-		<td><b>Patched by</b></td>
-    </tr>
-    <tr>
+<div class="glass-panel">
+    <table id="clients" class="display">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Platform</th>
+            <th>Download</th>
+            <th>Notes</th>
+            <th>Patched by</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
         <td>TweetDeck</td>
         <td>Windows XP and above</td>
         <td><a href="https://omegaaol.github.io/FlirbDeck0382.zip">Directly from this repository</a></td>
@@ -52,34 +228,34 @@
         <td>Tweet@rama</td>
         <td>Windows UWP 10 and above</td>
         <td><a href="http://retiled.marmak.net.pl/releases/Apptravaganza!/Tweet@Rama%20(Flirb)/">From marmak.net.pl</a></td>
-</td>
+<td></td>
 	<td>migbrunluz</td>
     </tr>
 <tr>
         <td>Simple Twitter Client</td>
         <td>Windows UWP 8.1 and above</td>
         <td><a href="http://retiled.marmak.net.pl/releases/Apptravaganza!/Simple%20Twitter%20Client%20(Flirb)/">From marmak.net.pl</a></td>
-</td>
+<td></td>
 	<td>migbrunluz</td>
     </tr>
 <tr>
         <td>Tweetium</td>
         <td>Windows UWP 8.1 and above</td>
         <td><a href="http://retiled.marmak.net.pl/releases/Apptravaganza!/Tweetium%20(Flirb)/">From marmak.net.pl</a></td>
-</td>
+<td></td>
 	<td>migbrunluz</td>
     </tr>
 	<tr>
         <td>Twitter 3.5.0</td>
         <td>Android 2.1 "Eclair" and above</td>
         <td><a href="https://mega.nz/file/vIVXCSgb#Z6vbTNdCAEf-vfBFn_djZceFz91j343UtWWo8hNQ5pQ">From MEGA</a></td>
-		<td>Patched for widescreen. Android 14 and above require installation via "adb install --bypass-low-target-sdk-block"</td>
+		<td>Patched for widescreen. Android 14 and above require installation via "adb install --bypass-low-target-sdk-block"</td><td></td>
     </tr>
 	<tr>
         <td>Twitter 3.5.0 (HTTP-only)</td>
         <td>Android 2.1 "Eclair" and above</td>
         <td><a href="https://mega.nz/file/rVc0DSoT#wep1O6j_txBEzAPpIqx0YkaJmGw-pDLfLhMhY8eTCG0">From MEGA</a></td>
-		<td>Only use if the standard download does not connect to Flirb on your device. Avoid using this version on public networks.</td>
+		<td>Only use if the standard download does not connect to Flirb on your device. Avoid using this version on public networks.</td><td></td>
     </tr>
 <tr>
         <td>Twitter 5.34</td>
@@ -160,12 +336,12 @@
 
         <td>Twitter 5.7</td>
         <td>iOS ?? - 9.3.5</td>
-        <td><a href="https://mega.nz/file/3R1CyDrY#RzlMAaNN1tv1w9aZWAcLyYdK3QT2fZ_V8JHIh0BHW4c">From MEGA</a></td>
+        <td><a href="https://mega.nz/file/3R1CyDrY#RzlMAaNN1tv1w9aZWAcLyYdK3QT2fZ_V8JHIh0BHW4c">From MEGA</a></td><td></td><td></td>
     </tr>
 	<tr>
         <td>Twitter 5.0.3</td>
         <td>iOS ?? - 9.3.5</td>
-        <td><a href="https://mega.nz/file/6JVwhTTa#c2TPhd_IzJcS11QiTdDV0sR-40bRkmpnJbadBhWPBsw">From MEGA</a></td>
+        <td><a href="https://mega.nz/file/6JVwhTTa#c2TPhd_IzJcS11QiTdDV0sR-40bRkmpnJbadBhWPBsw">From MEGA</a></td><td></td><td></td>
     </tr>
 	<tr>
         <td>Twitter 3.2a</td>
@@ -178,28 +354,28 @@
         <td>Twitter 6.67</td>
         <td>iOS (64-bit)</td>
         <td><a href="https://mega.nz/file/bIEg1AhI#Q3vbxjfjJAddj_GMml7bT9l3wJmmG_uX6hNK9WW_XoE">From MEGA</a></td>
-		<td>Needs extra steps to get working. Check Discord server for details.</td> 
+		<td>Needs extra steps to get working. Check Discord server for details.</td> <td></td>
 
    </tr>
 	<tr>
         <td>Tweetbot</td>
         <td>iOS 4.1 - 9.3.5</td>
-        <td><a href="https://mega.nz/file/mFEwVYiK#y8IazvZn4uKH8obI0-w-dFsP03SvhhMFgUEmsLlTic0">From MEGA</a></td>
+        <td><a href="https://mega.nz/file/mFEwVYiK#y8IazvZn4uKH8obI0-w-dFsP03SvhhMFgUEmsLlTic0">From MEGA</a></td><td></td><td></td>
     </tr>
 	<tr>
         <td>Weet</td>
         <td>iOS 3.0 - 9.3.5</td>
-        <td><a href="https://mega.nz/file/ydsTmDbY#KSzDklXG1vfZm0TyJWuAUH64UJm1OOXfxFcB5nFv8wk">From MEGA</a></td>
+        <td><a href="https://mega.nz/file/ydsTmDbY#KSzDklXG1vfZm0TyJWuAUH64UJm1OOXfxFcB5nFv8wk">From MEGA</a></td><td></td><td></td>
     </tr>
 		<tr>
         <td>Twitter</td>
         <td>Windows Phone 8</td>
-        <td><a href="https://mega.nz/file/aQsXSAja#JvwDi491zP2B8Z7WawDvpNJRrBsqS7Tt4DCjfNzyBdY">From MEGA</a></td>
+        <td><a href="https://mega.nz/file/aQsXSAja#JvwDi491zP2B8Z7WawDvpNJRrBsqS7Tt4DCjfNzyBdY">From MEGA</a></td><td></td><td></td>
     </tr>
 	<tr>
         <td>Fenice</td>
         <td>Windows Phone</td>
-        <td><a href="https://store.live.net.co/app/335">From the unofficial Windows Live Store</a></td>
+        <td><a href="https://store.live.net.co/app/335">From the unofficial Windows Live Store</a></td><td></td><td></td>
     </tr>
 <tr>
         <td>Flirb J2ME</td>
@@ -208,8 +384,31 @@
 	<td></td>
 	<td>gjhkyio</td>
     </tr>
-	
+    </tbody>
 </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#clients').DataTable({
+            paging: false,
+            order: [[0, 'asc']], 
+            columnDefs: [
+                { orderable: false, targets: 2 } 
+            ],
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Search clients...",
+                lengthMenu: "Show _MENU_",
+                info: "Showing _START_ to _END_ of _TOTAL_",
+                paginate: {
+                    previous: "◄",
+                    next: "►"
+                },
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
