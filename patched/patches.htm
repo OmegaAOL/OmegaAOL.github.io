@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OmegaAOL's Patched Software</title>
+
+<!-- jQuery + DataTables -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+/* Base body */
+body {
+    background-color: #121212;
+    color: #E0E0E0;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Heading */
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
+
+/* Glass panel effect for table container */
+.glass-panel {
+    background: linear-gradient(145deg, #1E1E1E, #232323);
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: inset 2px 2px 5px rgba(0,0,0,0.5),
+                inset -2px -2px 5px rgba(255,255,255,0.05),
+                4px 4px 15px rgba(0,0,0,0.5);
+}
+
+/* DataTables styling */
+table.dataTable {
+    width: 100% !important;
+    border-collapse: separate !important;
+    border-spacing: 0 8px;
+    background: #1A1A1A;
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 0.9rem;
+}
+
+table.dataTable thead tr {
+    background: #1F1F1F;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+}
+
+table.dataTable thead th {
+    font-weight: 600;
+    color: #CCCCCC;
+    padding: 10px 12px;
+    border-bottom: 1px solid #333;
+}
+
+table.dataTable tbody tr {
+    background: linear-gradient(to right, #1C1C1C, #202020);
+    box-shadow: inset 1px 1px 2px rgba(255,255,255,0.05),
+                inset -1px -1px 2px rgba(0,0,0,0.7);
+    border-radius: 6px;
+}
+
+table.dataTable tbody td {
+    padding: 8px 12px;
+    color: #E0E0E0;
+}
+
+table.dataTable tbody td a {
+    color: #4DA6FF;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+table.dataTable tbody td a:hover {
+    text-shadow: 0 0 4px #4DA6FF;
+    color: #80CFFF;
+}
+
+/* DataTables search input */
+.dataTables_filter input {
+    background: #1F1F1F;
+    color: #E0E0E0;
+    border: 1px solid #333;
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.dataTables_length select {
+    background: #1F1F1F;
+    color: #E0E0E0;
+    border: 1px solid #333;
+    border-radius: 6px;
+    padding: 4px 6px;
+    font-size: 0.9rem;
+}
+
+/* Pagination buttons */
+.dataTables_paginate a {
+    background: #1F1F1F;
+    color: #E0E0E0 !important;
+    padding: 4px 8px;
+    margin: 0 2px;
+    border-radius: 6px;
+    text-decoration: none;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.5),
+                inset -1px -1px 2px rgba(255,255,255,0.05);
+    transition: all 0.2s ease;
+}
+
+.dataTables_paginate a:hover {
+    background: #292929;
+    color: #FFFFFF !important;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.6),
+                inset -1px -1px 2px rgba(255,255,255,0.1);
+}
+
+/* Compact row spacing */
+table.dataTable tbody tr {
+    height: 40px;
+}
+
+</style>
+</head>
+<body>
+
+<h1>Patched software for Android</h1>
+
+<div class="glass-panel">
+    <table id="clients" class="display">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Platform</th>
+                <th>Download</th>
+                <th>Notes</th>
+                <th>Patched by</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Google Translate (2012)</td>
+                <td>Android 1.5+</td>
+                <td><a href="google-translate-patched.apk">Directly from this repository</a></td>
+                <td></td>
+                <td>OmegaAOL</td>
+            </tr>
+            <tr>
+                <td>Google Translate (2013)</td>
+                <td>Android 2.3+</td>
+                <td><a href="translate13patched.apk">Directly from this repository</a></td>
+                <td></td>
+                <td>OmegaAOL</td>
+            </tr>
+            <!-- Additional rows here -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+$(document).ready(function () {
+    $('#clients').DataTable({
+        paging: true,
+        pageLength: 10,
+        order: [[0, 'asc']],
+        columnDefs: [{ orderable: false, targets: 2 }],
+        language: {
+            search: "_INPUT_",
+            searchPlaceholder: "Search clients...",
+            lengthMenu: "Show _MENU_",
+            info: "Showing _START_ to _END_ of a total of _TOTAL_ apps",
+            paginate: { previous: "◄", next: "►" }
+        }
+    });
+});
+</script>
+</body>
+</html>
